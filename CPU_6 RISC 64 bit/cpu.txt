@@ -1,0 +1,119 @@
+Integer registers:
+x0 - x11   R1-12
+x12        PC
+x13        RA1
+---Accessible in safe mode---
+x14        ZERO
+x15        SP
+x16        FP
+x17        RA2
+x18 - x31  S1-14
+
+FP registers:
+FP1 - 32
+
+All registers and hardware accessible via addresses:
+Starting from 0xfff...
+x0-x31
+FP1 - FP32
+PC
+IR
+SWI Location
+IPI Location
+HWI Location
+Process HALT Location
+WORD Processor info length
+Processor info...
+
+0xffffffffffffeff8 - Systime
+0xffffffffffffeff0 - Time since epoch
+All addresses to 0x80000000000000000 hardware devices
+0x0 - 0x7999999999999999 RAM addresses
+
+Instruction Format:
+OPCODE|RDEST| REGA| REGB|...
+0    6|7  11|12 16|17 21|
+Instructions with immediates:
+Immediate occupies last bits and overflows into REGA/B as required
+
+Instructions:
+
+Context switches/interrupts:
+0000000 HALT - Software halt/Root halt
+0000001 SWI - Software interrupt
+0000010 SAFE - Switch to safe mode
+0000011 SETI - Set/reset interrupts
+
+Data Operations:
+0000100 LW
+0000101 LH
+0000110 LS
+0000111 LB
+0001000 SW
+0001001 SH
+0001010 SS
+0001011 SB
+0001100 LFS
+0001101 LFD
+0001110 SFS
+0001111 SFD
+
+Control flow:
+0010000 JAL
+0010001 JALR
+0010010 BEQ
+0010011 BNE
+0010100 BLT
+0010101 BLE
+0010110 BLTU
+0010111 BLEU
+
+Floating Point Operations:
+0011000 FADD
+0011001 FSUB
+0011010 FMUL
+0011011 FDIV
+0011100 FSQRT
+0011101 FSGN
+0011110 FCMP
+
+ALU Operations:
+0100000 NOT
+0100001 AND
+0100010 OR
+0100011 XOR
+0100100 ADD
+0100101 SUB
+0100110 MUL
+0100111 MULU
+0101000 DIV
+0101001 DIVU
+0101010 REM
+0101011 REMU
+0101100 SHL
+0101101 SHLU
+0101110 SHR
+0101111 SHRU
+
+Immediate ALU Operations:
+0110001 ANDI
+0110010 ORI
+0110011 XORI
+0110100 ADDI
+0110101 SUBI
+0110110 MULI
+0110111 MULUI
+0111000 DIVI
+0111001 DIVUI
+0111010 REMI
+0111011 REMUI
+0111100 SHLI
+0111101 SHLUI
+0111110 SHRI
+0111111 SHRUI
+
+Root mode only:
+1000000 OUTD - Debug output
+1000001 IND - Debug input
+1000010 IPI - Interprocessor interrupt
+1000011 PID - Processor ID
